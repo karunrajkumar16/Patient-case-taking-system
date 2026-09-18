@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F4F7FA;
+  --foreground: #00274C;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', 'Noto Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.125rem; /* 18px base body size for maximum readability */
+  line-height: 1.6;
+}
+
+/* Accessibility font sizing utility classes */
+.font-accessible-normal {
+  font-size: 1.125rem !important; /* 18px */
+  line-height: 1.6 !important;
+}
+
+.font-accessible-lg {
+  font-size: 1.25rem !important; /* 20px */
+  line-height: 1.7 !important;
+}
+
+.font-accessible-xl {
+  font-size: 1.375rem !important; /* 22px */
+  line-height: 1.8 !important;
+}
+
+/* Government high-contrast mode */
+.high-contrast {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+.high-contrast .govt-card {
+  background-color: #121212 !important;
+  border-color: #FFFF00 !important;
+  color: #FFFFFF !important;
+}
+
+.high-contrast button, 
+.high-contrast select, 
+.high-contrast input {
+  border-color: #FFFF00 !important;
+  color: #FFFFFF !important;
+  background-color: #000000 !important;
+}
+
+/* Traditional Indian Government Portal (NIC Standard) Styles */
+.govt-card {
+  background-color: #ffffff;
+  border: 2px solid #CBD5E1;
+  border-radius: 4px;
+  box-shadow: none !important;
+}
+
+.govt-header-strip {
+  background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%, #138808 100%);
+  height: 4px;
+}
+
+.govt-button-primary {
+  background-color: #0056B3;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.75rem 1.75rem;
+  border: 2px solid #003366;
+  font-size: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.govt-button-primary:hover:not(:disabled) {
+  background-color: #003366;
+}
+
+.govt-button-secondary {
+  background-color: #E2E8F0;
+  color: #00274C;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.75rem 1.75rem;
+  border: 2px solid #94A3B8;
+  font-size: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.govt-button-secondary:hover:not(:disabled) {
+  background-color: #CBD5E1;
+}
+
+.govt-button-success {
+  background-color: #138808;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.75rem 1.75rem;
+  border: 2px solid #0B5205;
+  font-size: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.govt-button-success:hover:not(:disabled) {
+  background-color: #0B5205;
+}
+
+/* CSS Marquee Ticker Animation */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+

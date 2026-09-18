@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+backend/venv/
+venv/
+
+# Next.js build output
+frontend/.next/
+frontend/out/
+.next/
+
+# Python cache & databases
+__pycache__/
+*.pyc
+*.db
+backend/medikiosk.db
+backend/uploaded_files/
+
+# Environment variables & local files
+.env
+.env.local
+*.log
+
+# OS & IDE files
+.DS_Store
+.vscode/
+.idea/
