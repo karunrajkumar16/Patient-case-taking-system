@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import StepProgress from '@/components/StepProgress';
-import ClinicalSummaryViewer from '@/components/ClinicalSummaryViewer';
-import { verifySummary, fetchAuditLogs } from '@/app/api';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import StepProgress from '../../../components/StepProgress';
+import ClinicalSummaryViewer from '../../../components/ClinicalSummaryViewer';
+import { verifySummary, fetchAuditLogs } from '../../api';
 
 export default function DoctorReviewPage() {
   const [language, setLanguage] = useState('en');

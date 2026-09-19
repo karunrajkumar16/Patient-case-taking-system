@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { fetchDashboardStats, fetchAuditLogs } from '@/app/api';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import { fetchDashboardStats, fetchAuditLogs } from '../api';
 
 export default function DashboardPage() {
   const [language, setLanguage] = useState('en');

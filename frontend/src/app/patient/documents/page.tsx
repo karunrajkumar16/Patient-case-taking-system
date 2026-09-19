@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import StepProgress from '@/components/StepProgress';
-import { uploadDocument, fetchPatientDocuments } from '@/app/api';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import StepProgress from '../../../components/StepProgress';
+import { uploadDocument, fetchPatientDocuments } from '../../api';
 
 export default function DocumentUploadPage() {
   const router = useRouter();

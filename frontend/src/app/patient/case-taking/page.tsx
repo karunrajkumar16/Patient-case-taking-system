@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import StepProgress from '@/components/StepProgress';
-import { sendCaseTakingTurn, callBhashiniSTT } from '@/app/api';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import StepProgress from '../../../components/StepProgress';
+import { sendCaseTakingTurn, callBhashiniSTT } from '../../api';
 
 export default function CaseTakingPage() {
   const router = useRouter();

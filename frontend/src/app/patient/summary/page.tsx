@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import StepProgress from '@/components/StepProgress';
-import ClinicalSummaryViewer from '@/components/ClinicalSummaryViewer';
-import { generateSummary, evaluateRedFlags } from '@/app/api';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import StepProgress from '../../../components/StepProgress';
+import ClinicalSummaryViewer from '../../../components/ClinicalSummaryViewer';
+import { generateSummary, evaluateRedFlags } from '../../api';
 
 export default function ClinicalSummaryPage() {
   const router = useRouter();
