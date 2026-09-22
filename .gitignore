@@ -24,3 +24,6 @@ backend/uploaded_files/
 .DS_Store
 .vscode/
 .idea/
+.vercel
+*.tsbuildinfo
+

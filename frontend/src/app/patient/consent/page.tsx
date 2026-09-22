@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
+import KioskHeader from '../../../components/KioskHeader';
 import StepProgress from '../../../components/StepProgress';
+import AbhaCard from '../../../components/AbhaCard';
 import { saveConsent } from '../../api';
 
 export default function ConsentPage() {
@@ -39,102 +39,95 @@ export default function ConsentPage() {
     }
   };
 
-  const fontClass = fontSize === 'xlarge' ? 'font-accessible-xl' : fontSize === 'large' ? 'font-accessible-lg' : 'font-accessible-normal';
+  const fontClass =
+    fontSize === 'xlarge'
+      ? 'font-accessible-xl'
+      : fontSize === 'large'
+      ? 'font-accessible-lg'
+      : 'font-accessible-normal';
 
   return (
-    <div className={`min-h-screen bg-[#F4F7FA] flex flex-col ${fontClass} ${highContrast ? 'high-contrast' : ''}`}>
-      <Header 
-        language={language} 
-        setLanguage={setLanguage} 
-        fontSize={fontSize} 
+    <div
+      className={`h-screen max-h-screen overflow-hidden flex flex-col bg-[#F4F7FA] font-sans ${fontClass} ${
+        highContrast ? 'high-contrast' : ''
+      }`}
+    >
+      <KioskHeader
+        language={language}
+        setLanguage={setLanguage}
+        fontSize={fontSize}
         setFontSize={setFontSize}
         highContrast={highContrast}
         setHighContrast={setHighContrast}
       />
       <StepProgress currentStep={2} language={language} />
 
-      <main className="max-w-4xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
-        <div className="govt-card p-6 sm:p-8 space-y-6">
+      <main className="flex-1 min-h-0 flex flex-col p-3 max-w-4xl mx-auto w-full overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-300 p-4 flex flex-col min-h-0 overflow-y-auto space-y-4 shadow-xs">
           {/* Module Header Strip */}
-          <div className="border-b-2 border-[#00274C] pb-4">
+          <div className="border-b border-gray-200 pb-2 shrink-0 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="bg-[#00274C] text-[#FF9933] text-xs font-black px-3 py-1 rounded uppercase tracking-wider">
+              <span className="bg-[#00274C] text-[#FF9933] text-[10px] font-black px-2.5 py-0.5 rounded uppercase tracking-wider">
                 MODULE 02
               </span>
-              <span className="text-[#0056B3] font-bold text-sm">
-                ABDM Patient Consent Framework
-              </span>
+              <h1 className="text-base sm:text-lg font-black text-[#00274C]">
+                {language === 'hi'
+                  ? 'स्वास्थ्य रिकॉर्ड उपयोग डिजिटल सहमति'
+                  : 'Digital Patient Consent Form'}
+              </h1>
             </div>
-            <h1 className="text-3xl font-black text-[#00274C] mt-2">
-              {language === 'hi' ? 'स्वास्थ्य रिकॉर्ड उपयोग डिजिटल सहमति' : 'Digital Patient Consent Form'}
-            </h1>
-            <p className="text-base font-semibold text-gray-700 mt-1">
-              {language === 'hi'
-                ? 'डॉक्टर परामर्श सारांश तैयार करने के लिए कृपया अपनी सहमति की समीक्षा करें और पुष्टि करें।'
-                : 'Please review and authorize processing of your medical information for this OPD encounter.'}
-            </p>
+            <span className="text-xs font-semibold text-[#0056B3]">
+              ABDM Patient Consent Framework
+            </span>
           </div>
 
-          {/* Active Patient Details Strip */}
+          {/* Render Official ABHA Health Identification Card INSIDE the Box */}
           {patient && (
-            <div className="bg-slate-100 border-2 border-slate-300 rounded-md p-4 flex flex-wrap justify-between items-center gap-4 text-sm font-bold text-[#00274C]">
-              <div>
-                <span className="text-gray-600">Verified Patient: </span>
-                <span className="text-xl font-black ml-1">{patient.name}</span>
+            <div className="shrink-0 space-y-1 py-1">
+              <div className="text-center text-[11px] font-bold text-[#138808] uppercase tracking-wider flex items-center justify-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#138808] animate-pulse" />
+                VERIFIED ABDM PATIENT IDENTIFICATION CARD
               </div>
-              <div>
-                <span className="text-gray-600">ABHA Number: </span>
-                <span className="font-mono text-lg text-[#0056B3] font-extrabold ml-1">{patient.abha_id}</span>
-              </div>
+              <AbhaCard patient={patient} showProceedButton={false} />
             </div>
           )}
 
           {/* Government Consent Box */}
-          <div className="bg-blue-50 border-2 border-[#0056B3] rounded-md p-6 space-y-4">
-            <h3 className="text-xl font-black text-[#00274C]">
-              {language === 'hi' ? 'सहमति कथन (Consent Terms):' : 'Official Consent Statement:'}
+          <div className="bg-blue-50 border border-[#0056B3] rounded-lg p-3 space-y-2 text-xs shrink-0">
+            <h3 className="font-extrabold text-sm text-[#00274C]">
+              {language === 'hi'
+                ? 'सहमति कथन (Consent Terms):'
+                : 'Official Consent Statement:'}
             </h3>
-            <p className="text-base text-gray-900 leading-relaxed font-semibold">
+            <p className="text-gray-900 leading-snug font-medium">
               {language === 'hi'
                 ? 'MediKiosk को डॉक्टर के लिए एक स्पष्ट सारांश तैयार करने हेतु आपकी वर्तमान बीमारियों और आपके द्वारा अपलोड किए गए पुराने मेडिकल रिकॉर्ड को प्रोसेस करने की अनुमति प्रदान करता हूँ।'
                 : 'I authorize MediKiosk to process my current health symptoms, voice descriptions, and uploaded past prescriptions/lab reports strictly to generate a clinical summary for the attending doctor.'}
             </p>
-            <ul className="list-disc list-inside space-y-2 text-sm font-bold text-[#00274C] bg-white p-4 rounded border-2 border-blue-200">
-              <li>Information processed exclusively for this outpatient consultation (OPD).</li>
-              <li>OCR text extraction highlights diagnoses, prescribed drugs, and vital signs.</li>
-              <li>A registered medical clinician must review and sign off on all records.</li>
-            </ul>
           </div>
 
           {/* Checkbox & Controls Form */}
-          <form onSubmit={handleSubmit} className="space-y-6 pt-2">
-            <label className="flex items-start gap-4 p-5 border-3 border-[#00274C] rounded-md bg-white hover:bg-amber-50/50 cursor-pointer transition-colors">
+          <form onSubmit={handleSubmit} className="space-y-3 shrink-0">
+            <label className="flex items-center gap-3 p-3 border-2 border-[#00274C] rounded-lg bg-white hover:bg-amber-50/50 cursor-pointer transition-colors">
               <input
                 type="checkbox"
                 checked={granted}
                 onChange={(e) => setGranted(e.target.checked)}
-                className="w-7 h-7 mt-0.5 text-[#0056B3] rounded border-2 border-[#00274C] focus:ring-4 focus:ring-[#FF9933]"
+                className="w-5 h-5 text-[#0056B3] rounded border-2 border-[#00274C] focus:ring-2 focus:ring-[#FF9933] shrink-0"
               />
-              <span className="text-lg font-black text-[#00274C] leading-snug">
+              <span className="text-sm font-black text-[#00274C] leading-snug">
                 {language === 'hi'
                   ? 'मैं इस परामर्श के लिए अपनी स्वास्थ्य जानकारी को डिजिटल रूप से प्रोसेस करने की सहमति देता/देती हूँ।'
                   : 'I give my explicit consent to process my health information and medical records for this consultation.'}
               </span>
             </label>
 
-            {/* Privacy Strip */}
-            <div className="bg-emerald-50 border-2 border-[#138808] rounded-md p-4 text-sm text-[#138808] font-bold">
-              <span>
-                <strong>ABDM Security Assurance:</strong> Your data is protected under National Health Authority guidelines and consent management frameworks.
-              </span>
-            </div>
-
             {/* Action Buttons */}
-            <div className="flex justify-between items-center pt-4 border-t-2 border-gray-300">
+            <div className="flex justify-between items-center pt-2 border-t border-gray-200">
               <button
                 type="button"
                 onClick={() => router.push('/patient')}
-                className="govt-button-secondary text-lg py-3 px-6"
+                className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-extrabold text-sm py-2 px-4 rounded-lg"
               >
                 &lt;- {language === 'hi' ? 'पीछे' : 'Back'}
               </button>
@@ -142,19 +135,24 @@ export default function ConsentPage() {
               <button
                 type="submit"
                 disabled={!granted || loading}
-                className={`govt-button-primary text-xl py-3.5 px-8 ${
+                className={`bg-[#138808] hover:bg-[#0B5205] text-white font-extrabold text-base py-2.5 px-6 rounded-lg shadow-sm transition-all ${
                   !granted || loading ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
-                {loading ? 'Recording Consent...' : language === 'hi' ? 'सहमति दें एवं आगे बढ़ें ->' : 'Give Consent & Continue ->'}
+                {loading
+                  ? 'Recording Consent...'
+                  : language === 'hi'
+                  ? 'सहमति दें एवं आगे बढ़ें ->'
+                  : 'Give Consent & Continue ->'}
               </button>
-
             </div>
           </form>
         </div>
       </main>
-      <Footer />
+
+      <footer className="w-full bg-white border-t border-gray-200 py-1.5 px-4 text-center text-[11px] text-gray-500 font-semibold select-none shrink-0">
+        MediKiosk Public Healthcare Kiosk System — Ayushman Bharat Digital Mission (ABDM) Compliant
+      </footer>
     </div>
   );
 }
-

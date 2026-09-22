@@ -19,9 +19,9 @@ export default function StepProgress({ currentStep, language = 'en' }: StepProgr
   ];
 
   return (
-    <div className="w-full bg-[#E2E8F0] border-b-2 border-[#CBD5E1] py-3 px-4">
+    <div className="w-full bg-[#E2E8F0] border-b border-[#CBD5E1] py-1.5 px-3 shrink-0">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 text-center">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-1.5 text-center">
           {steps.map((step, idx) => {
             const stepNum = idx + 1;
             const isActive = stepNum === currentStep;
@@ -31,16 +31,16 @@ export default function StepProgress({ currentStep, language = 'en' }: StepProgr
               <Link
                 key={step.num}
                 href={step.href}
-                className={`py-2.5 px-3 border-2 rounded font-sans text-sm sm:text-base font-extrabold transition-all flex items-center justify-center gap-2 ${
+                className={`py-1 px-2 border rounded text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-1.5 ${
                   isActive
-                    ? 'bg-[#00274C] text-white border-[#001D39] shadow-none ring-2 ring-[#FF9933]'
+                    ? 'bg-[#00274C] text-white border-[#001D39] ring-2 ring-[#FF9933]'
                     : isCompleted
                     ? 'bg-[#138808] text-white border-[#0B5205]'
-                    : 'bg-white text-[#00274C] border-[#CBD5E1] hover:bg-slate-100 hover:border-[#00274C]'
+                    : 'bg-white text-[#00274C] border-[#CBD5E1] hover:bg-slate-100'
                 }`}
               >
                 <span
-                  className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
+                  className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-black shrink-0 ${
                     isActive
                       ? 'bg-[#FF9933] text-black'
                       : isCompleted
@@ -48,7 +48,7 @@ export default function StepProgress({ currentStep, language = 'en' }: StepProgr
                       : 'bg-[#CBD5E1] text-[#00274C]'
                   }`}
                 >
-                  {isCompleted ? 'OK' : stepNum}
+                  {isCompleted ? '✓' : stepNum}
                 </span>
 
                 <span className="truncate">{step.title}</span>
@@ -60,4 +60,3 @@ export default function StepProgress({ currentStep, language = 'en' }: StepProgr
     </div>
   );
 }
-

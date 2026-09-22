@@ -6,6 +6,7 @@ import Footer from '../../../components/Footer';
 import StepProgress from '../../../components/StepProgress';
 import ClinicalSummaryViewer from '../../../components/ClinicalSummaryViewer';
 import { verifySummary, fetchAuditLogs } from '../../api';
+import { downloadSummaryPDF } from '../../../utils/pdfExport';
 
 export default function DoctorReviewPage() {
   const [language, setLanguage] = useState('en');
@@ -223,6 +224,13 @@ Dr. Ananya Roy, MD (General Medicine) | Reg No: MCI-2021-88492
                   className="govt-button-success text-xl py-3.5 px-8 flex items-center gap-2"
                 >
                   <span>ACCEPT & SIGN OFF</span>
+                </button>
+
+                <button
+                  onClick={() => downloadSummaryPDF({ formatted_text: summaryText }, patient)}
+                  className="bg-[#138808] hover:bg-[#0B5205] text-white font-extrabold text-xl py-3.5 px-6 rounded-md flex items-center gap-2 shadow-md"
+                >
+                  <span>📥 DOWNLOAD PDF SUMMARY</span>
                 </button>
 
                 <button
