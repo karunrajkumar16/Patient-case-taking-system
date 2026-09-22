@@ -148,7 +148,7 @@ export default function CaseTakingPage() {
 
   return (
     <div
-      className={`h-screen max-h-screen overflow-hidden flex flex-col bg-[#F4F7FA] font-sans ${fontClass} ${
+      className={`min-h-screen lg:h-screen lg:max-h-screen overflow-y-auto lg:overflow-hidden flex flex-col bg-[#F4F7FA] font-sans ${fontClass} ${
         highContrast ? 'high-contrast' : ''
       }`}
     >
